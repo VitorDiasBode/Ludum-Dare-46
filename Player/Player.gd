@@ -3,7 +3,7 @@ extends KinematicBody2D
 var energy = 100.0
 
 var velocity = Vector2()
-var speed = 500
+var speed = 350
 var look_direction = 1
 
 func _physics_process(delta):
