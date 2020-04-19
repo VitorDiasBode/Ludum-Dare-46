@@ -36,7 +36,6 @@ func _on_Area2D_body_entered(body):
 
 func _on_Timer_timeout():
 	path = get_parent().get_node("Navigation2D").get_simple_path( global_position, player.global_position, false)
-	$Node/Line2D.points = path
 	path.remove(0)
 	state = "seek"
 	
