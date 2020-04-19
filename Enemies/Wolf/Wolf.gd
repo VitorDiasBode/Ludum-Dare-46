@@ -11,10 +11,10 @@ func _physics_process(delta):
 	if state == "seek":
 		if path.size() > 0:
 			direction = global_position.direction_to(path[0])
-			move_and_slide(direction*speed)
+			global_position = global_position.move_toward(path[0], delta*speed)
 			set_animation()
 			
-			if global_position.distance_to(path[0]) <= 0.2:
+			if global_position.distance_to(path[0]) <= .5:
 				path.remove(0)
 			
 		
@@ -35,7 +35,7 @@ func _on_Area2D_body_entered(body):
 	
 
 func _on_Timer_timeout():
-	path = get_parent().get_node("Navigation2D").get_simple_path( global_position, player.global_position)
+	path = get_parent().get_node("Navigation2D").get_simple_path( global_position, player.global_position, false)
 	path.remove(0)
 	state = "seek"
 	
