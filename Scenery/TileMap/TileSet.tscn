@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenery/TileMap/Tiny TileSet.png" type="Texture" id=1]
+[ext_resource path="res://Scenery/TileMap/TileSet.res" type="TileSet" id=2]
 
 [node name="TileSet" type="Node2D"]
 
@@ -50,3 +51,12 @@ position = Vector2( 88, 176 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 160, 160, 80, 80 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite8/StaticBody2D"]
+polygon = PoolVector2Array( -8.8531, -37.2105, -29.6316, 8.60226, -19.3675, 38.8938, 19.9364, 39.8952, 33.9556, -0.910767, 11.675, -36.4595 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+format = 1
