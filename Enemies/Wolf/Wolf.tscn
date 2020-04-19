@@ -1,0 +1,60 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Enemies/Wolf/Animations/wolf10.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf09.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf05.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf11.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf15.png" type="Texture" id=5]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf13.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf08.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf07.png" type="Texture" id=8]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf01.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/Wolf/Animations/wolf14.png" type="Texture" id=10]
+[ext_resource path="res://Enemies/Wolf/Wolf.gd" type="Script" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.198, 5.56032 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 10 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 200, 200 )
+
+[node name="Wolf" type="KinematicBody2D"]
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.44588, -9.80614 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -5.14563, -41.1652 )
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -5.14563, -41.1652 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
