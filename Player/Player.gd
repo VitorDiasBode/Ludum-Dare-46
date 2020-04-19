@@ -33,7 +33,6 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity*speed)
 	set_animation()
 	
-	print(speed)
 	
 	if state == "idle":
 		speed = lerp(speed, 0, 0.5)
